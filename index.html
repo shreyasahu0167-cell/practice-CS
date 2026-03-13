@@ -428,28 +428,28 @@
 </div>
 
 <script>
- <div style="margin-top: 50px; background: #fff8e1; padding: 20px; color: #3e2723; border-radius: 10px; display: inline-block;">
+ <div style="margin-top: 50px; background: #fff8e1; padding: 20px; color: #3e2723; border-radius: 10px; display: inline-block; border: 2px solid #8d6e63;">
     <h3>Did you like our Café?</h3>
     <p>Likes: <span id="count">0</span></p>
-    <button onclick="addLike()" style="padding: 10px; cursor: pointer;">❤️ Press to Like</button>
+    <button onclick="addLike()" style="padding: 10px; cursor: pointer; background: #8d6e63; color: white; border: none; border-radius: 5px;">❤️ Press to Like</button>
 </div>
 
 <script>
-    // पेज लोड होते ही चेक करो कि क्या पहले से कोई लाइक सेव है?
-    let savedLikes = localStorage.getItem('myLikes');
-    let currentLikes = savedLikes ? parseInt(savedLikes) : 0;
+    // 1. अलमारी से पुराना डेटा लाओ
+    var savedLikes = localStorage.getItem('myLikes');
+    var currentLikes = savedLikes ? parseInt(savedLikes) : 0;
     
-    // स्क्रीन पर वो नंबर दिखाओ जो सेव था
-    document.getElementById("count").innerText = currentLikes;
+    // 2. स्क्रीन पर दिखाओ
+    document.getElementById("count").innerHTML = currentLikes;
 
+    // 3. फंक्शन जो बटन दबाने पर चलेगा
     function addLike() {
         currentLikes = currentLikes + 1;
-        document.getElementById("count").innerText = currentLikes;
-        
-        // अब इस नए नंबर को ब्राउज़र की 'Local Storage' वाली अलमारी में सेव कर दो
+        document.getElementById("count").innerHTML = currentLikes;
         localStorage.setItem('myLikes', currentLikes);
     }
 </script>
 </body>
 </html>
+
 
