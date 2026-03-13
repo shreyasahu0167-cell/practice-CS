@@ -428,12 +428,28 @@
 </div>
 
 <script>
-    let currentLikes = 0; // यह हमारी मेमोरी है
+ <div style="margin-top: 50px; background: #fff8e1; padding: 20px; color: #3e2723; border-radius: 10px; display: inline-block;">
+    <h3>Did you like our Café?</h3>
+    <p>Likes: <span id="count">0</span></p>
+    <button onclick="addLike()" style="padding: 10px; cursor: pointer;">❤️ Press to Like</button>
+</div>
+
+<script>
+    // पेज लोड होते ही चेक करो कि क्या पहले से कोई लाइक सेव है?
+    let savedLikes = localStorage.getItem('myLikes');
+    let currentLikes = savedLikes ? parseInt(savedLikes) : 0;
+    
+    // स्क्रीन पर वो नंबर दिखाओ जो सेव था
+    document.getElementById("count").innerText = currentLikes;
 
     function addLike() {
-        currentLikes = currentLikes + 1; // लॉजिक: एक जोड़ दो
-        document.getElementById("count").innerText = currentLikes; // स्क्रीन पर दिखाओ
+        currentLikes = currentLikes + 1;
+        document.getElementById("count").innerText = currentLikes;
+        
+        // अब इस नए नंबर को ब्राउज़र की 'Local Storage' वाली अलमारी में सेव कर दो
+        localStorage.setItem('myLikes', currentLikes);
     }
 </script>
 </body>
 </html>
+
