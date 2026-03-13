@@ -421,6 +421,19 @@
       <a href="#">Twitter</a>
     </div>
   </footer>
+<div style="margin-top: 50px; background: #fff8e1; padding: 20px; color: #3e2723; border-radius: 10px; display: inline-block;">
+    <h3>Did you like our Café?</h3>
+    <p>Likes: <span id="count">0</span></p>
+    <button onclick="addLike()" style="padding: 10px; cursor: pointer;">❤️ Press to Like</button>
+</div>
 
+<script>
+    let currentLikes = 0; // यह हमारी मेमोरी है
+
+    function addLike() {
+        currentLikes = currentLikes + 1; // लॉजिक: एक जोड़ दो
+        document.getElementById("count").innerText = currentLikes; // स्क्रीन पर दिखाओ
+    }
+</script>
 </body>
 </html>
