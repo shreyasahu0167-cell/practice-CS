@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Coffee Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Color Palette ===== */
+    :root {
+      --espresso-brown: #3E2723;
+      --warm-cream: #FFF3E0;
+      --golden-caramel: #D4A373;
+    }
+
+    /* ===== Global Styles ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--espresso-brown);
+      line-height: 1.6;
+      background-color: var(--warm-cream);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant', serif;
+      color: var(--espresso-brown);
+      margin-bottom: 15px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--espresso-brown);
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    section {
+      padding: 80px 20px;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(62, 39, 35, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      z-index: 1000;
+    }
+
+    header .logo {
+      font-family: 'Cormorant', serif;
+      font-size: 24px;
+      color: var(--golden-caramel);
+    }
+
+    nav a {
+      margin-left: 30px;
+      font-weight: 700;
+      color: var(--warm-cream);
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--golden-caramel);
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top:0; left:0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(62, 39, 35, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      color: var(--warm-cream);
+    }
+
+    .hero-content h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero-content a {
+      background-color: var(--golden-caramel);
+      color: var(--espresso-brown);
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .hero-content a:hover {
+      background-color: var(--espresso-brown);
+      color: var(--golden-caramel);
+    }
+
+    /* ===== Menu Section ===== */
+    .menu {
+      background-color: var(--warm-cream);
+      text-align: center;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .menu-item {
+      background-color: var(--warm-cream);
+      border: 1px solid var(--espresso-brown);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.05);
+    }
+
+    .menu-item img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-item h3 {
+      margin: 15px 0 5px;
+    }
+
+    .menu-item p {
+      padding: 0 15px 15px;
+      font-size: 14px;
+    }
+
+    /* ===== Best Sellers ===== */
+    .best-sellers {
+      background-color: var(--espresso-brown);
+      color: var(--warm-cream);
+      text-align: center;
+    }
+
+    .best-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .best-item {
+      background-color: var(--warm-cream);
+      color: var(--espresso-brown);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .best-item:hover {
+      transform: scale(1.05);
+    }
+
+    .best-item img {
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .best-item h3 {
+      margin: 15px 0 5px;
+    }
+
+    .best-item p {
+      padding: 0 15px 15px;
+      font-size: 14px;
+    }
+
+    /* ===== Reviews ===== */
+    .reviews {
+      background-color: var(--warm-cream);
+      text-align: center;
+    }
+
+    .review-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    .review-card {
+      min-width: 300px;
+      background-color: var(--espresso-brown);
+      color: var(--warm-cream);
+      padding: 20px;
+      border-radius: 15px;
+      scroll-snap-align: start;
+    }
+
+    /* ===== About & Founder ===== */
+    .about, .founder {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .about img, .founder img {
+      border-radius: 15px;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .about-text, .founder-text {
+      max-width: 600px;
+    }
+
+    /* ===== Google Maps ===== */
+    .location iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 15px;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background-color: var(--espresso-brown);
+      color: var(--warm-cream);
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    footer a {
+      color: var(--golden-caramel);
+      margin: 0 10px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 40px;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+      }
+
+      header {
+        padding: 15px 20px;
+      }
+
+      .about, .founder {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        display: none; /* For simplicity, mobile nav can be added as hamburger menu later */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">Café Aroma</div>
+    <nav>
+      <a href="#menu">Menu</a>
+      <a href="#best">Best Sellers</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About Us</a>
+      <a href="#location">Location</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Café Aroma</h1>
+      <p>Where Every Sip Feels Like Home</p>
+      <a href="#menu">Explore Our Menu</a>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80" alt="Coffee 1">
+        <h3>Espresso</h3>
+        <p>Rich and smooth, our classic espresso shot is a perfect start to your day.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1525941688555-3f8f7b0c9b38?auto=format&fit=crop&w=800&q=80" alt="Coffee 2">
+        <h3>Cappuccino</h3>
+        <p>Creamy frothed milk over a strong espresso – the ultimate cozy drink.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Coffee 3">
+        <h3>Latte</h3>
+        <p>A gentle blend of espresso and steamed milk for a smooth flavor.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1559056199-641c1e0d6f0e?auto=format&fit=crop&w=800&q=80" alt="Coffee 4">
+        <h3>Mocha</h3>
+        <p>Chocolate-infused espresso with creamy milk for a sweet indulgence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Sellers -->
+  <section id="best" class="best-sellers">
+    <h2>Customer Favorites</h2>
+    <div class="best-grid">
+      <div class="best-item">
+        <img src="https://images.unsplash.com/photo-1532634726-8b9fb998a17c?auto=format&fit=crop&w=800&q=80" alt="Best 1">
+        <h3>Vanilla Latte</h3>
+        <p>A sweet and aromatic favorite among our coffee lovers.</p>
+      </div>
+      <div class="best-item">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Best 2">
+        <h3>Flat White</h3>
+        <p>Perfect balance of espresso and velvety milk, a true classic.</p>
+      </div>
+      <div class="best-item">
+        <img src="https://images.unsplash.com/photo-1522184216313-1d0d2c9db0e7?auto=format&fit=crop&w=800&q=80" alt="Best 3">
+        <h3>Cold Brew</h3>
+        <p>Smooth, refreshing, and strong – ideal for a sunny day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="reviews">
+    <h2>What Our Customers Say</h2>
+    <div class="review-slider">
+      <div class="review-card">
+        <p>"Best coffee in town! Cozy atmosphere and friendly staff."</p>
+        <h3>- Sarah M.</h3>
+      </div>
+      <div class="review-card">
+        <p>"Absolutely love the vanilla latte! Every sip feels magical."</p>
+        <h3>- John D.</h3>
+      </div>
+      <div class="review-card">
+        <p>"A hidden gem. Perfect place to work or relax."</p>
+        <h3>- Priya K.</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="about">
+    <img src="https://images.unsplash.com/photo-1515442261605-7a835a7f9b1e?auto=format&fit=crop&w=800&q=80" alt="Coffee Shop">
+    <div class="about-text">
+      <h2>Our Story</h2>
+      <p>At Café Aroma, we believe coffee is more than a drink – it’s an experience. Our rustic interior and cozy ambiance make every visit feel like home. We source the finest beans and craft each cup with love.</p>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="founder">
+    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80" alt="Founder">
+    <div class="founder-text">
+      <h2>Message from Our Founder</h2>
+      <p>"Café Aroma started with a simple dream: to create a space where coffee lovers feel at home. Every cup we serve is a promise of warmth and quality. Welcome to our coffee family!"</p>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section id="location" class="location">
+    <h2>Find Us Here</h2>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.123456789!2d80.331232!3d26.449999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c2bf0f1234567%3A0xabcdef123456789!2sKanpur%2C%20UP%2C%20India!5e0!3m2!1sen!2sin!4v1610000000000" 
+      allowfullscreen="" 
+      loading="lazy">
+    </iframe>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Café Aroma. All Rights Reserved.</p>
+    <div>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
+
+</body>
+</html>
